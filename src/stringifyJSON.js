@@ -8,7 +8,6 @@ var stringifyJSON = function(obj) {
   var JSONstr = "";
   
   if (Array.isArray(obj)) {
-    //do something
     JSONstr += "[";
 
     for (var i = 0; i < obj.length; i++) {
@@ -17,9 +16,9 @@ var stringifyJSON = function(obj) {
     if (i > 0) {
       JSONstr = JSONstr.slice(0, JSONstr.length - 1);
     }
+
     JSONstr += "]";
   } else if (typeof obj === "object" && obj !== null) {
-    //do other stuff
     JSONstr += "{";
 
     for (var prop in obj) {
@@ -28,14 +27,14 @@ var stringifyJSON = function(obj) {
         continue;
       }
       JSONstr += "\"" + prop + "\"" + ":";
-      JSONstr += stringifyJSON(obj[prop]) + ",";
+      JSONstr += temp + ",";
     }
     if (JSONstr.charAt(JSONstr.length - 1) === ",") {
       JSONstr = JSONstr.slice(0, JSONstr.length - 1);
     }
+
     JSONstr += "}";
   } else if (typeof obj === "string") {
-    //do stuff
     JSONstr += "\"" + obj + "\"";
   } else if (typeof obj === "function" || obj === undefined) {
     //indicate that this isn't right
